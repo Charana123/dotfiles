@@ -18,6 +18,12 @@ inoremap <Tab> <C-t>
 " maps shift+tab to shift left
 inoremap <S-Tab> <C-d>
 
+" maps yank and cut to system clipboard
+vnoremap y "*y
+vnoremap x "*x
+" maps paste to system clipboard
+nnoremap p "*p
+
 " configure expanding of tabs for various file types
 au BufRead,BufNewFile *.py set expandtab
 au BufRead,BufNewFile *.c set noexpandtab
@@ -40,3 +46,37 @@ set backspace=indent,eol,start
 set ruler                           " show line and column number
 syntax on               " syntax highlighting
 set showcmd             " show (partial) command in status line
+
+
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      exec 'vert res 40'
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+
+
+
+
+
+
+
+
+
