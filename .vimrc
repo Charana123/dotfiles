@@ -18,14 +18,17 @@ inoremap <Tab> <C-t>
 " maps shift+tab to shift left
 inoremap <S-Tab> <C-d>
 
-" maps yank and cut to system clipboard
-vnoremap y "*y
-vnoremap x "*x
-" maps paste to system clipboard
-nnoremap p "*p
+if has('clipboard')
+    " maps yank and cut to system clipboard
+    vnoremap y "*y
+    vnoremap x "*x
+    " maps paste to system clipboard
+    nnoremap p "*p
+endif
 
 " configure expanding of tabs for various file types
 au BufRead,BufNewFile *.py set expandtab
+au BufRead,BufNewFile *.py set textwidth=79 " break lines when line length increases
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
@@ -34,7 +37,6 @@ au BufRead,BufNewFile Makefile* set noexpandtab
 " configure editor with tabs and nice stuff...
 " --------------------------------------------------------------------------------
 set expandtab           " enter spaces when tab is pressed
-set textwidth=120       " break lines when line length increases
 set tabstop=4           " use 4 spaces to represent tab
 set softtabstop=4
 set shiftwidth=4        " number of spaces to use for auto indent
@@ -81,21 +83,47 @@ if has('persistent_undo')
     set undoreload=10000           " number of lines to save for undo
 endif
 
+" enable netrw line numbers
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
+" highlights/un-highlights all instances of current word on Enter
+let g:highlighting = 0
+function! Highlighting()
+  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
+    let g:highlighting = 0
+    return ":silent nohlsearch\<CR>"
+  endif
+  let @/ = '\<'.expand('<cword>').'\>'
+  let g:highlighting = 1
+  return ":silent set hlsearch\<CR>"
+endfunction
+nnoremap <silent> <expr> <CR> Highlighting()
 
+" modifies the tabline to show only tab-number, filename and modified indicator symbol (+)
+function! Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
 
+    let s .= '%' . tab . 'T'
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tab .':'
+    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
 
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  let s .= '%#TabLineFill#'
+  if (exists("g:tablineclosebutton"))
+    let s .= '%=%999XX'
+  endif
+  return s
+endfunction
+set tabline=%!Tabline()
