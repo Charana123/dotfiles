@@ -12,6 +12,7 @@ vnoremap d "_d
 
 set incsearch
 set hlsearch
+nnoremap <esc><esc> :silent! nohls<cr>
 
 " maps tab to shift right
 inoremap <Tab> <C-t>
@@ -127,3 +128,14 @@ function! Tabline()
   return s
 endfunction
 set tabline=%!Tabline()
+
+
+" toggle previous active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
+" vnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
+
+" resize current buffer
+nnoremap + 10<C-w>> 
+nnoremap - 10<C-w><
+
