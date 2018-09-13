@@ -8,6 +8,15 @@ sudo cp ./.vimrc /root/.vimrc
 cp ./.screenrc ~/.screenrc
 sudo cp ./.screenrc /root/.screenrc
 
+
+# Copy .inputrc
+cp ./.inputrc ~/.inputrc
+sudo cp ./.inputrc /root/.inputrc
+
+# Copy .zshrc
+cp ./.zshrc ~/.zshrc
+sudo cp ./.zshrc /root/.zshrc
+
 echo "
 alias vi=\"vim\"
 alias top=\"top -o cpu\"
