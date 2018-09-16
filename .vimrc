@@ -1,3 +1,41 @@
+" Setup Vundle plugins (optionally on local machine)
+if has('macunix')
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
+    " Easy motion (Navigation)
+    Plugin 'git://github.com/easymotion/vim-easymotion.git'
+
+    " YouCompleteMe (Auto Completion)
+    Plugin 'Valloric/YouCompleteMe'
+
+    " Indent Guides (Display Indentation)
+    Plugin 'nathanaelkane/vim-indent-guides'
+
+    " Fugitive (Git Integration)
+    Plugin 'tpope/vim-fugitive'
+
+    " Utlisnips (Template Snippet Engine)
+    Plugin 'SirVer/ultisnips'
+
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<C-t>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+
+    " Vim Snippets (Snippet Collection)
+    Plugin 'honza/vim-snippets'
+
+    " All of your Plugins must be added before the following line
+    call vundle#end()            " required
+endif
+
 set number
 
 set tabstop=4
