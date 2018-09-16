@@ -8,7 +8,11 @@ export ZSH="/Users/Charana/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="amuse"
+if test "$(uname)" = "Darwin" ; then
+  ZSH_THEME="spaceship"
+else
+  ZSH_THEME="amuse"
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -65,7 +69,17 @@ ENABLE_CORRECTION="true"
 plugins=(
   git
   vi-mode
+  bgnotify
 )
+
+# bgnotify customizations
+bgnotify_threshold=4  ## set your own notification threshold
+
+function notify_formatted {
+  ## $1=exit_status, $2=command, $3=elapsed_time
+  [ $1 -eq 0 ] && title="Holy Smokes Batman!" || title="Holy Graf Zeppelin!"
+  bgnotify "$title -- after $3 s" "$2";
+}
 
 source $ZSH/oh-my-zsh.sh
 
