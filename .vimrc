@@ -12,7 +12,7 @@ if has('macunix')
 
     " YouCompleteMe (Auto Completion)
     Plugin 'Valloric/YouCompleteMe'
-
+        
     " Indent Guides (Display Indentation)
     Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -32,11 +32,12 @@ if has('macunix')
     " Vim Snippets (Snippet Collection)
     Plugin 'honza/vim-snippets'
 
-    " All of your Plugins must be added before the following line
     call vundle#end()            " required
 endif
 
 set number
+" Toggle relative line number
+nmap <C-L> :set invrelativenumber<CR>
 
 set tabstop=4
 set shiftwidth=4
@@ -44,7 +45,7 @@ set expandtab
 
 set backspace=indent,eol,start
 
-" map dd to the black hole register https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
+" maps all delete operations to the black hole register https://stackoverflow.com/questions/3776117/what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-mapping
 nnoremap d "_d
 vnoremap d "_d
 
@@ -58,11 +59,13 @@ inoremap <Tab> <C-t>
 inoremap <S-Tab> <C-d>
 
 if has('clipboard')
-    " maps yank and cut to system clipboard
+    " yank and cut to system clipboard
+    nnoremap y "*y
     vnoremap y "*y
     vnoremap x "*x
-    " maps paste to system clipboard
+    " paste from system clipboard
     nnoremap p "*p
+    vnoremap p "*p
 endif
 
 " configure expanding of tabs for various file types
@@ -113,14 +116,14 @@ endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
 " Vim 7.3 persistent undo
-if has('persistent_undo')
-    let myundodir = '$HOME/.vim/undodir/'
-    silent call system('mkdir -p ' . myundodir)
-    let &undodir = expand(myundodir)          " where to save undo histories
-    set undofile                   " Save undos after file closes
-    set undolevels=1000            " How many undos
-    set undoreload=10000           " number of lines to save for undo
-endif
+" if has('persistent_undo')
+"     let myundodir = '$HOME/.vim/undodir/'
+"     silent call system('mkdir -p ' . myundodir)
+"     let &undodir = expand(myundodir)          " where to save undo histories
+"     set undofile                   " Save undos after file closes
+"     set undolevels=1000            " How many undos
+"     set undoreload=10000           " number of lines to save for undo
+" endif
 
 " enable netrw line numbers
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -162,6 +165,7 @@ function! Tabline()
   let s .= '%#TabLineFill#'
   if (exists("g:tablineclosebutton"))
     let s .= '%=%999XX'
+  A
   endif
   return s
 endfunction
@@ -177,3 +181,11 @@ nnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
 nnoremap + 10<C-w>> 
 nnoremap - 10<C-w><
 
+" Finding Files
+" Provides tab completion for :find (open file) or :b (open buffer) commands 
+set path+=**
+" Displays all matching files
+set wildmenu
+
+" Tag jumping
+command! MakeTags !ctags -R .
