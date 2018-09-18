@@ -1,3 +1,4 @@
+B
 " Setup Vundle plugins (optionally on local machine)
 if has('macunix')
     " set the runtime path to include Vundle and initialize
@@ -18,6 +19,15 @@ if has('macunix')
 
     " Fugitive (Git Integration)
     Plugin 'tpope/vim-fugitive'
+
+    " Signify (Git Diff)
+    Plugin 'mhinz/vim-signify'
+    let g:signify_vcs_list = [ 'git' ]
+    let g:signify_sign_delete = '-'
+    highlight clear SignColumn
+    highlight DiffAdd           cterm=bold ctermbg=119 ctermfg=0
+    highlight DiffDelete        cterm=bold ctermbg=167 ctermfg=0
+    highlight DiffChange        cterm=bold ctermbg=227 ctermfg=0
 
     " Utlisnips (Template Snippet Engine)
     Plugin 'SirVer/ultisnips'
@@ -210,3 +220,6 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 nnoremap m //e<CR>
 nnoremap n //<CR>
+
+" 'help' expands to 'tab help' in command-line mode
+cabbrev help tab help
