@@ -12,7 +12,7 @@ if has('macunix')
 
     " YouCompleteMe (Auto Completion)
     Plugin 'Valloric/YouCompleteMe'
-        
+
     " Indent Guides (Display Indentation)
     Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -23,7 +23,7 @@ if has('macunix')
     Plugin 'SirVer/ultisnips'
 
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<C-t>"
+    let g:UltiSnipsExpandTrigger="<C-l>"
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
     " If you want :UltiSnipsEdit to split your window.
@@ -37,7 +37,7 @@ endif
 
 set number
 " Toggle relative line number
-nmap <C-L> :set invrelativenumber<CR>
+" nmap <C-L> :set invrelativenumber<CR>
 
 set tabstop=4
 set shiftwidth=4
@@ -178,14 +178,35 @@ nnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
 " vnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
 
 " resize current buffer
-nnoremap + 10<C-w>> 
+nnoremap + 10<C-w>>
 nnoremap - 10<C-w><
 
 " Finding Files
-" Provides tab completion for :find (open file) or :b (open buffer) commands 
+" Provides tab completion for :find/:tabf or :b/:bf commands
 set path+=**
 " Displays all matching files
 set wildmenu
+set wildmode=longest:full,full
 
 " Tag jumping
 command! MakeTags !ctags -R .
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
+" netrw configuration
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+nnoremap m //e<CR>
+nnoremap n //<CR>

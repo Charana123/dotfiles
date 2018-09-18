@@ -70,6 +70,7 @@ plugins=(
   git
   vi-mode
   bgnotify
+  zsh-autosuggestions
 )
 
 # bgnotify customizations
@@ -116,4 +117,6 @@ export LANG=en_US.UTF-8
 export EDITOR=vim
 alias vi="vim"
 
-
+# Use homebrew ctags (not MacOS CommandLineTools ctags)
+alias ctags="`brew --prefix`/bin/ctags"
+alias grep="grep -I --color"
