@@ -1,4 +1,3 @@
-B
 " Setup Vundle plugins (optionally on local machine)
 if has('macunix')
     " set the runtime path to include Vundle and initialize
@@ -25,6 +24,7 @@ if has('macunix')
     let g:signify_vcs_list = [ 'git' ]
     let g:signify_sign_delete = '-'
     highlight clear SignColumn
+    " highlight SignColumn ctermbg=Black
     highlight DiffAdd           cterm=bold ctermbg=119 ctermfg=0
     highlight DiffDelete        cterm=bold ctermbg=167 ctermfg=0
     highlight DiffChange        cterm=bold ctermbg=227 ctermfg=0
@@ -41,6 +41,11 @@ if has('macunix')
 
     " Vim Snippets (Snippet Collection)
     Plugin 'honza/vim-snippets'
+
+
+    " ==== SYNTAX HIGHLIGHTING ====
+    " Typscript syntax
+    Plugin 'leafgarland/typescript-vim'
 
     call vundle#end()            " required
 endif
@@ -221,5 +226,18 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 nnoremap m //e<CR>
 nnoremap n //<CR>
 
-" 'help' expands to 'tab help' in command-line mode
 cabbrev help tab help
+
+
+"Spell Checking
+autocmd BufNewFile,BufRead *.txt set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.tex set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.rst set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.yaml set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.html set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.md set spell spelllang=en_gb
+
+"word wrap 80 chars for md files
+au BufRead,BufNewFile *.md setlocal textwidth=80
+au BufRead,BufNewFile *.tex setlocal textwidth=80
+
