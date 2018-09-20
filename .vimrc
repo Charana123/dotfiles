@@ -4,6 +4,9 @@ if has('macunix')
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
+    " vim-airline (Status/Tab line)
+    Plugin 'vim-airline/vim-airline'
+
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
 
@@ -84,6 +87,9 @@ if has('clipboard')
 endif
 
 " configure expanding of tabs for various file types
+if exists('+colorcolumn')
+  au BufRead,BufNewFile *.py set colorcolumn=80
+endif
 au BufRead,BufNewFile *.py set expandtab
 au BufRead,BufNewFile *.py set textwidth=79 " break lines when line length increases
 au BufRead,BufNewFile *.c set noexpandtab
@@ -240,4 +246,40 @@ autocmd BufNewFile,BufRead *.md set spell spelllang=en_gb
 "word wrap 80 chars for md files
 au BufRead,BufNewFile *.md setlocal textwidth=80
 au BufRead,BufNewFile *.tex setlocal textwidth=80
+
+" http://vimdoc.sourceforge.net/htmldoc/intro.html#keycodes
+" Swapping line up or down
+function! s:swap_lines(n1, n2)
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+endfunction
+
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
+
+    call s:swap_lines(n, n - 1)
+    exec n - 1
+endfunction
+
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    exec n + 1
+endfunction
+
+nnoremap <silent> <C-k> :call <SID>swap_up()<CR>
+nnoremap <silent> <C-j> :call <SID>swap_down()<CR>
+
+" Causes buffer to stutter
+" nnoremap <silent> <C-k> yyddkP
+" nnoremap <silent> <C-j> yyddp
 
