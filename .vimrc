@@ -4,8 +4,13 @@ if has('macunix')
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
-    " vim-airline (Status/Tab line)
+    " vim-airline (status and tab lines)
     Plugin 'vim-airline/vim-airline'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#tab_nr_type = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#buffer_nr_format = 'b%s-'
+    let g:airline#extensions#tabline#formatter = 'unique_tail'
 
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
@@ -283,3 +288,8 @@ nnoremap <silent> <C-j> :call <SID>swap_down()<CR>
 " nnoremap <silent> <C-k> yyddkP
 " nnoremap <silent> <C-j> yyddp
 
+" mapping delay and key code delay
+set timeoutlen=1000 ttimeoutlen=0
+
+" Parse any edited rst to html
+au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shellescape(expand('%:r')) . '.html')
