@@ -4,6 +4,9 @@ if has('macunix')
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
     " vim-airline (status and tab lines)
     Plugin 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
@@ -12,17 +15,24 @@ if has('macunix')
     let g:airline#extensions#tabline#buffer_nr_format = 'b%s-'
     let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
-
-    " Easy motion (Navigation)
-    Plugin 'git://github.com/easymotion/vim-easymotion.git'
-
     " YouCompleteMe (Auto Completion)
-    Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'Valloric/YouCompleteMe'
 
-    " Indent Guides (Display Indentation)
-    Plugin 'nathanaelkane/vim-indent-guides'
+    " deoplete (Async AutoCompletion)
+    if has('nvim')
+        Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plugin 'Shougo/deoplete.nvim'
+        Plugin 'roxma/nvim-yarp'
+        Plugin 'roxma/vim-hug-neovim-rpc'
+    endif
+    let g:deoplete#enable_at_startup = 1
+
+    " deoplete-jedi (python autocompletion)
+    " Plugin 'zchee/deoplete-jedi'
+
+    " indentLine (Display Indentation)
+    Plugin 'Yggdroot/indentLine'
 
     " Fugitive (Git Integration)
     Plugin 'tpope/vim-fugitive'
@@ -39,7 +49,6 @@ if has('macunix')
 
     " Utlisnips (Template Snippet Engine)
     Plugin 'SirVer/ultisnips'
-
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<C-l>"
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -49,7 +58,6 @@ if has('macunix')
 
     " Vim Snippets (Snippet Collection)
     Plugin 'honza/vim-snippets'
-
 
     " ==== SYNTAX HIGHLIGHTING ====
     " Typscript syntax
@@ -293,3 +301,8 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " Parse any edited rst to html
 au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shellescape(expand('%:r')) . '.html')
+
+
+
+
+
