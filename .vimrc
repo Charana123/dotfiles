@@ -1,69 +1,69 @@
 " Setup Vundle plugins (optionally on local machine)
 if has('macunix')
-    " set the runtime path to include Vundle and initialize
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+	" set the runtime path to include Vundle and initialize
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
 
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
+	" let Vundle manage Vundle, required
+	Plugin 'VundleVim/Vundle.vim'
 
-    " vim-airline (status and tab lines)
-    Plugin 'vim-airline/vim-airline'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-    let g:airline#extensions#tabline#buffer_nr_format = 'b%s-'
-    let g:airline#extensions#tabline#formatter = 'unique_tail'
+	" vim-airline (status and tab lines)
+	Plugin 'vim-airline/vim-airline'
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline#extensions#tabline#tab_nr_type = 1
+	let g:airline#extensions#tabline#buffer_nr_show = 1
+	let g:airline#extensions#tabline#buffer_nr_format = 'b%s-'
+	let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-    " YouCompleteMe (Auto Completion)
-    " Plugin 'Valloric/YouCompleteMe'
+	" YouCompleteMe (Auto Completion)
+	" Plugin 'Valloric/YouCompleteMe'
 
-    " deoplete (Async AutoCompletion)
-    if has('nvim')
-        Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plugin 'Shougo/deoplete.nvim'
-        Plugin 'roxma/nvim-yarp'
-        Plugin 'roxma/vim-hug-neovim-rpc'
-    endif
-    let g:deoplete#enable_at_startup = 1
+	" deoplete (Async AutoCompletion)
+	if has('nvim')
+		Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+		Plugin 'Shougo/deoplete.nvim'
+		Plugin 'roxma/nvim-yarp'
+		Plugin 'roxma/vim-hug-neovim-rpc'
+	endif
+	let g:deoplete#enable_at_startup = 1
 
-    " deoplete-jedi (python autocompletion)
-    " Plugin 'zchee/deoplete-jedi'
+	" deoplete-jedi (python autocompletion)
+	" Plugin 'zchee/deoplete-jedi'
 
-    " indentLine (Display Indentation)
-    Plugin 'Yggdroot/indentLine'
+	" indentLine (Display Indentation)
+	Plugin 'Yggdroot/indentLine'
 
-    " Fugitive (Git Integration)
-    Plugin 'tpope/vim-fugitive'
+	" Fugitive (Git Integration)
+	Plugin 'tpope/vim-fugitive'
 
-    " Signify (Git Diff)
-    Plugin 'mhinz/vim-signify'
-    let g:signify_vcs_list = [ 'git' ]
-    let g:signify_sign_delete = '-'
-    highlight clear SignColumn
-    " highlight SignColumn ctermbg=Black
-    highlight DiffAdd           cterm=bold ctermbg=119 ctermfg=0
-    highlight DiffDelete        cterm=bold ctermbg=167 ctermfg=0
-    highlight DiffChange        cterm=bold ctermbg=227 ctermfg=0
+	" Signify (Git Diff)
+	Plugin 'mhinz/vim-signify'
+	let g:signify_vcs_list = [ 'git' ]
+	let g:signify_sign_delete = '-'
+	highlight clear SignColumn
+	" highlight SignColumn ctermbg=Black
+	highlight DiffAdd           cterm=bold ctermbg=119 ctermfg=0
+	highlight DiffDelete        cterm=bold ctermbg=167 ctermfg=0
+	highlight DiffChange        cterm=bold ctermbg=227 ctermfg=0
 
-    " Utlisnips (Template Snippet Engine)
-    Plugin 'SirVer/ultisnips'
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<C-e>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
+	" Utlisnips (Template Snippet Engine)
+	Plugin 'SirVer/ultisnips'
+	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+	let g:UltiSnipsExpandTrigger="<C-e>"
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+	" If you want :UltiSnipsEdit to split your window.
+	let g:UltiSnipsEditSplit="vertical"
 
-    " Vim Snippets (Snippet Collection)
-    Plugin 'honza/vim-snippets'
+	" Vim Snippets (Snippet Collection)
+	Plugin 'honza/vim-snippets'
 
-    " ==== SYNTAX HIGHLIGHTING ====
-    " Typscript syntax
-    Plugin 'leafgarland/typescript-vim'
+	" ==== SYNTAX HIGHLIGHTING ====
+	" Typscript syntax
+	Plugin 'leafgarland/typescript-vim'
 
-    call vundle#end()            " required
+	call vundle#end()            " required
 endif
 
 set number
@@ -100,13 +100,13 @@ inoremap <Tab> <C-t>
 inoremap <S-Tab> <C-d>
 
 if has('clipboard')
-    " yank and cut to system clipboard
-    nnoremap y "*y
-    vnoremap y "*y
-    vnoremap x "*x
-    " paste from system clipboard
-    nnoremap p "*p
-    vnoremap p "*p
+	" yank and cut to system clipboard
+	nnoremap y "*y
+	vnoremap y "*y
+	vnoremap x "*x
+	" paste from system clipboard
+	nnoremap p "*p
+	vnoremap p "*p
 endif
 
 " configure expanding of tabs for various file types
@@ -129,26 +129,26 @@ set showcmd             " show (partial) command in status line
 
 
 " Toggle Vexplore with Ctrl-E
-function! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          close
-          exec cur_win_nr . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec '1wincmd w'
-      Vexplore
-      exec 'vert res 40'
-      let t:expl_buf_num = bufnr("%")
-  endif
-endfunction
-map <silent> <C-E> :call ToggleVExplorer()<CR>
+" function! ToggleVExplorer()
+"   if exists("t:expl_buf_num")
+" 		let expl_win_num = bufwinnr(t:expl_buf_num)
+" 		if expl_win_num != -1
+" 			let cur_win_nr = winnr()
+" 			exec expl_win_num . 'wincmd w'
+" 			close
+" 			exec cur_win_nr . 'wincmd w'
+" 			unlet t:expl_buf_num
+" 		else
+" 			unlet t:expl_buf_num
+" 		endif
+"   else
+" 		exec '1wincmd w'
+" 		Vexplore
+" 		exec 'vert res 40'
+" 		let t:expl_buf_num = bufnr("%")
+"   endif
+" endfunction
+" map <silent> <C-E> :call ToggleVExplorer()<CR>
 
 " Vim 7.3 persistent undo
 " if has('persistent_undo')
@@ -164,47 +164,46 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 " highlights/un-highlights all instances of current word on Enter
-let g:highlighting = 0
-function! Highlighting()
-  if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
-    let g:highlighting = 0
-    return ":silent nohlsearch\<CR>"
-  endif
-  let @/ = '\<'.expand('<cword>').'\>'
-  let g:highlighting = 1
-  return ":silent set hlsearch\<CR>"
-endfunction
+" let g:highlighting = 0
+" function! Highlighting()
+"   if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
+"     let g:highlighting = 0
+"     return ":silent nohlsearch\<CR>"
+"   endif
+"   let @/ = '\<'.expand('<cword>').'\>'
+"   let g:highlighting = 1
+"   return ":silent set hlsearch\<CR>"
+" endfunction
 " nnoremap <silent> <expr> <CR> Highlighting()
 
 " modifies the tabline to show only tab-number, filename and modified indicator symbol (+)
-function! Tabline()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    let tab = i + 1
-    let winnr = tabpagewinnr(tab)
-    let buflist = tabpagebuflist(tab)
-    let bufnr = buflist[winnr - 1]
-    let bufname = bufname(bufnr)
-    let bufmodified = getbufvar(bufnr, "&mod")
-
-    let s .= '%' . tab . 'T'
-    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tab .':'
-    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
-
-    if bufmodified
-      let s .= '[+] '
-    endif
-  endfor
-
-  let s .= '%#TabLineFill#'
-  if (exists("g:tablineclosebutton"))
-    let s .= '%=%999XX'
-  A
-  endif
-  return s
-endfunction
-set tabline=%!Tabline()
+" function! Tabline()
+"   let s = ''
+"   for i in range(tabpagenr('$'))
+"     let tab = i + 1
+"     let winnr = tabpagewinnr(tab)
+"     let buflist = tabpagebuflist(tab)
+"     let bufnr = buflist[winnr - 1]
+"     let bufname = bufname(bufnr)
+"     let bufmodified = getbufvar(bufnr, "&mod")
+"
+"     let s .= '%' . tab . 'T'
+"     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+"     let s .= ' ' . tab .':'
+"     let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+"
+"     if bufmodified
+"       let s .= '[+] '
+"     endif
+"   endfor
+"
+"   let s .= '%#TabLineFill#'
+"   if (exists("g:tablineclosebutton"))
+"     let s .= '%=%999XX'
+"   endif
+"   return s
+" endfunction
+" set tabline=%!Tabline()
 
 
 " toggle previous active tab
@@ -264,30 +263,30 @@ autocmd BufNewFile,BufRead *.md   set spell spelllang=en_gb
 " http://vimdoc.sourceforge.net/htmldoc/intro.html#keycodes
 " Swapping line up or down
 function! s:swap_lines(n1, n2)
-    let line1 = getline(a:n1)
-    let line2 = getline(a:n2)
-    call setline(a:n1, line2)
-    call setline(a:n2, line1)
+	let line1 = getline(a:n1)
+	let line2 = getline(a:n2)
+	call setline(a:n1, line2)
+	call setline(a:n2, line1)
 endfunction
 
 function! s:swap_up()
-    let n = line('.')
-    if n == 1
-        return
-    endif
+	let n = line('.')
+	if n == 1
+		return
+	endif
 
-    call s:swap_lines(n, n - 1)
-    exec n - 1
+	call s:swap_lines(n, n - 1)
+	exec n - 1
 endfunction
 
 function! s:swap_down()
-    let n = line('.')
-    if n == line('$')
-        return
-    endif
+	let n = line('.')
+	if n == line('$')
+			return
+	endif
 
-    call s:swap_lines(n, n + 1)
-    exec n + 1
+	call s:swap_lines(n, n + 1)
+	exec n + 1
 endfunction
 
 nnoremap <silent> <C-k> :call <SID>swap_up()<CR>
@@ -302,11 +301,6 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " Parse any edited rst to html on buffer write
 au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shellescape(expand('%:r')) . '.html')
-
-
-" Learn vim the hard way
-" echo ">^.^<"
-
 
 
 
