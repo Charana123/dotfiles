@@ -50,7 +50,7 @@ if has('macunix')
     " Utlisnips (Template Snippet Engine)
     Plugin 'SirVer/ultisnips'
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<C-l>"
+    let g:UltiSnipsExpandTrigger="<C-e>"
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
     " If you want :UltiSnipsEdit to split your window.
@@ -70,9 +70,19 @@ set number
 " Toggle relative line number
 " nmap <C-L> :set invrelativenumber<CR>
 
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" Indentation
+set tabstop=2     " A tab counts for 2 columns
+set softtabstop=2 " Tab in insert mode adds 2 columns
+set shiftwidth=2  " Indentation operations, indent by 2 columns
+set shiftround    " Round indentation operations (<C-T> and <C-D> in insert mode and `>>` and `<<` in normal mode) to the nearest tab
+set noexpandtab   " Do not replace tab with spaces
+set autoindent    " copy indent from current line when starting a new line
+if has('smartindent')
+	set smartindent   " indent according to syntactic conventions
+endif
+if has('cindent')
+	set cindent " Indentation according to C-style syntax
+endif
 
 set backspace=indent,eol,start
 
@@ -108,15 +118,6 @@ au BufRead,BufNewFile *.py set textwidth=79 " break lines when line length incre
 au BufRead,BufNewFile *.c set noexpandtab
 au BufRead,BufNewFile *.h set noexpandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
-
-" --------------------------------------------------------------------------------
-" configure editor with tabs and nice stuff...
-" --------------------------------------------------------------------------------
-set expandtab           " enter spaces when tab is pressed
-set tabstop=4           " use 4 spaces to represent tab
-set softtabstop=4
-set shiftwidth=4        " number of spaces to use for auto indent
-set autoindent          " copy indent from current line when starting a new line
 
 " make backspaces more powerfull
 set backspace=indent,eol,start
@@ -173,7 +174,7 @@ function! Highlighting()
   let g:highlighting = 1
   return ":silent set hlsearch\<CR>"
 endfunction
-nnoremap <silent> <expr> <CR> Highlighting()
+" nnoremap <silent> <expr> <CR> Highlighting()
 
 " modifies the tabline to show only tab-number, filename and modified indicator symbol (+)
 function! Tabline()
@@ -249,16 +250,16 @@ cabbrev help tab help
 
 
 "Spell Checking
-autocmd BufNewFile,BufRead *.txt set spell spelllang=en_gb
-autocmd BufNewFile,BufRead *.tex set spell spelllang=en_gb
-autocmd BufNewFile,BufRead *.rst set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.txt  set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.tex  set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.rst  set spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.yaml set spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.html set spell spelllang=en_gb
-autocmd BufNewFile,BufRead *.md set spell spelllang=en_gb
+autocmd BufNewFile,BufRead *.md   set spell spelllang=en_gb
 
-"word wrap 80 chars for md files
-au BufRead,BufNewFile *.md setlocal textwidth=80
-au BufRead,BufNewFile *.tex setlocal textwidth=80
+" word wrap 80 chars for md files
+" au BufRead,BufNewFile *.md setlocal textwidth=80
+" au BufRead,BufNewFile *.tex setlocal textwidth=80
 
 " http://vimdoc.sourceforge.net/htmldoc/intro.html#keycodes
 " Swapping line up or down
@@ -299,8 +300,16 @@ nnoremap <silent> <C-j> :call <SID>swap_down()<CR>
 " mapping delay and key code delay
 set timeoutlen=1000 ttimeoutlen=0
 
-" Parse any edited rst to html
+" Parse any edited rst to html on buffer write
 au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shellescape(expand('%:r')) . '.html')
+
+
+" Learn vim the hard way
+" echo ">^.^<"
+
+
+
+
 
 
 
