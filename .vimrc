@@ -28,6 +28,18 @@ if has('macunix')
 	endif
 	let g:deoplete#enable_at_startup = 1
 
+" 	if has('nvim')
+" 		Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+" 	else
+" 		Plugin 'Shougo/defx.nvim'
+" 		Plugin 'roxma/nvim-yarp'
+" 		Plugin 'roxma/vim-hug-neovim-rpc'
+" 	endif
+
+" 	if has('nvim') || has('terminal')
+" 		Plugin 'Shougo/deol.nvim'
+" 	endif
+
 	" deoplete-jedi (python autocompletion)
 	" Plugin 'zchee/deoplete-jedi'
 
@@ -90,9 +102,12 @@ set backspace=indent,eol,start
 nnoremap d "_d
 vnoremap d "_d
 
-set incsearch
-set hlsearch
-nnoremap <esc><esc> :silent! nohls<cr>
+" Search options
+if has('extra_search')
+	set incsearch
+	set hlsearch
+	nnoremap <esc><esc> :silent! nohlsearch<cr>
+endif
 
 " maps tab to shift right
 inoremap <Tab> <C-t>
@@ -245,11 +260,10 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 nnoremap m //e<CR>
 nnoremap n //<CR>
 
-cabbrev help tab help
-
-
 "Spell Checking
-autocmd BufNewFile,BufRead *.txt  set spell spelllang=en_gb
+if expand('%:p:h:t') == 'doc'
+	autocmd BufNewFile,BufRead *.txt  set spell spelllang=en_gb
+endif
 autocmd BufNewFile,BufRead *.tex  set spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.rst  set spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.yaml set spell spelllang=en_gb
@@ -302,8 +316,13 @@ set timeoutlen=1000 ttimeoutlen=0
 " Parse any edited rst to html on buffer write
 au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shellescape(expand('%:r')) . '.html')
 
+" Vertical splitting places new window to the right
+set splitright
 
-
+" Useful for selecting block regions in Visual block mode <C-v>
+" if has('virtualedit')
+" 	set virtualedit=all
+" endif
 
 
 
