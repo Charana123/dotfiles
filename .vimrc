@@ -1,4 +1,20 @@
-" Setup Vundle plugins (optionally on local machine)
+" ====== Terminal Configuration ========================================
+if has('nvim')
+	" <Esc> exists Terminal Mode
+	tnoremap <Esc> <C-\><C-n>
+	" Automatically enter inside mode when opening terminal
+	autocmd TermOpen term://* startinsert
+	" Open terminal in new tab
+	nnoremap <silent> <leader>tn :tabnew<CR>:terminal<CR>
+	" Open terminal in vertical split
+	nnoremap <silent> <leader>tv :vnew<CR>:terminal<CR>
+endif
+if !has('nvim') && has('terminal')
+	nnoremap <silent> <leader>tn :tab terminal<CR>
+	nnoremap <silent> <leader>tv :vert terminal<CR>
+endif
+
+" ======= Setup Vundle plugins (optionally on local machine) ============
 if has('macunix')
 	" set the runtime path to include Vundle and initialize
 	set rtp+=~/.vim/bundle/Vundle.vim
@@ -28,20 +44,11 @@ if has('macunix')
 	endif
 	let g:deoplete#enable_at_startup = 1
 
-" 	if has('nvim')
-" 		Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-" 	else
-" 		Plugin 'Shougo/defx.nvim'
-" 		Plugin 'roxma/nvim-yarp'
-" 		Plugin 'roxma/vim-hug-neovim-rpc'
-" 	endif
-
-" 	if has('nvim') || has('terminal')
-" 		Plugin 'Shougo/deol.nvim'
-" 	endif
-
 	" deoplete-jedi (python autocompletion)
 	" Plugin 'zchee/deoplete-jedi'
+
+	" neomake (Async syntax checker and linter)
+	Plugin 'neomake/neomake'
 
 	" indentLine (Display Indentation)
 	Plugin 'Yggdroot/indentLine'
@@ -62,7 +69,7 @@ if has('macunix')
 	" Utlisnips (Template Snippet Engine)
 	Plugin 'SirVer/ultisnips'
 	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-	let g:UltiSnipsExpandTrigger="<C-e>"
+	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<c-b>"
 	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 	" If you want :UltiSnipsEdit to split your window.
@@ -76,6 +83,12 @@ if has('macunix')
 	Plugin 'leafgarland/typescript-vim'
 
 	call vundle#end()            " required
+
+	" Configure neomake
+	" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+	call neomake#configure#automake('nw', 1000)
+	let g:neomake_python_enabled_makers = ['flake8']
+	let g:neomake_rst_enabled_makers = ['rstlint', 'rstcheck']
 endif
 
 set number
@@ -141,30 +154,6 @@ set ruler                           " show line and column number
 syntax on               " syntax highlighting
 set showcmd             " show (partial) command in status line
 
-
-
-" Toggle Vexplore with Ctrl-E
-" function! ToggleVExplorer()
-"   if exists("t:expl_buf_num")
-" 		let expl_win_num = bufwinnr(t:expl_buf_num)
-" 		if expl_win_num != -1
-" 			let cur_win_nr = winnr()
-" 			exec expl_win_num . 'wincmd w'
-" 			close
-" 			exec cur_win_nr . 'wincmd w'
-" 			unlet t:expl_buf_num
-" 		else
-" 			unlet t:expl_buf_num
-" 		endif
-"   else
-" 		exec '1wincmd w'
-" 		Vexplore
-" 		exec 'vert res 40'
-" 		let t:expl_buf_num = bufnr("%")
-"   endif
-" endfunction
-" map <silent> <C-E> :call ToggleVExplorer()<CR>
-
 " Vim 7.3 persistent undo
 " if has('persistent_undo')
 "     let myundodir = '$HOME/.vim/undodir/'
@@ -177,49 +166,6 @@ set showcmd             " show (partial) command in status line
 
 " enable netrw line numbers
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-
-" highlights/un-highlights all instances of current word on Enter
-" let g:highlighting = 0
-" function! Highlighting()
-"   if g:highlighting == 1 && @/ =~ '^\\<'.expand('<cword>').'\\>$'
-"     let g:highlighting = 0
-"     return ":silent nohlsearch\<CR>"
-"   endif
-"   let @/ = '\<'.expand('<cword>').'\>'
-"   let g:highlighting = 1
-"   return ":silent set hlsearch\<CR>"
-" endfunction
-" nnoremap <silent> <expr> <CR> Highlighting()
-
-" modifies the tabline to show only tab-number, filename and modified indicator symbol (+)
-" function! Tabline()
-"   let s = ''
-"   for i in range(tabpagenr('$'))
-"     let tab = i + 1
-"     let winnr = tabpagewinnr(tab)
-"     let buflist = tabpagebuflist(tab)
-"     let bufnr = buflist[winnr - 1]
-"     let bufname = bufname(bufnr)
-"     let bufmodified = getbufvar(bufnr, "&mod")
-"
-"     let s .= '%' . tab . 'T'
-"     let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-"     let s .= ' ' . tab .':'
-"     let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
-"
-"     if bufmodified
-"       let s .= '[+] '
-"     endif
-"   endfor
-"
-"   let s .= '%#TabLineFill#'
-"   if (exists("g:tablineclosebutton"))
-"     let s .= '%=%999XX'
-"   endif
-"   return s
-" endfunction
-" set tabline=%!Tabline()
-
 
 " toggle previous active tab
 au TabLeave * let g:lasttab = tabpagenr()
@@ -323,8 +269,6 @@ set splitright
 " if has('virtualedit')
 " 	set virtualedit=all
 " endif
-
-
 
 
 
