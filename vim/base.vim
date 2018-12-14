@@ -9,11 +9,11 @@ set timeoutlen=1000 ttimeoutlen=0
 
 
 " ====== Indentation Options ==========================================
-set tabstop=2     " A tab counts for 2 columns
-set softtabstop=2 " Tab in insert mode adds 2 columns
-set shiftwidth=2  " Indentation operations, indent by 2 columns
+set tabstop=4     " A tab counts for 2 columns
+set softtabstop=4 " Tab in insert mode adds 2 columns
+set shiftwidth=4  " Indentation operations, indent by 2 columns
 set shiftround    " Round indentation operations (<C-T> and <C-D> in insert mode and `>>` and `<<` in normal mode) to the nearest tab
-set noexpandtab   " Do not replace tab with spaces
+set expandtab     " Replace tab with spaces
 set autoindent    " copy indent from current line when starting a new line
 if has('smartindent')
 	set smartindent   " indent according to syntactic conventions
@@ -59,10 +59,10 @@ if has('extra_search')
 endif
 
 " ====== File specific configuration ====================================
-if exists('+colorcolumn')
-  au BufRead,BufNewFile *.py set colorcolumn=80
-endif
-au BufRead,BufNewFile *.py set textwidth=79 " break lines when line length increases
+"if exists('+colorcolumn')
+"  au BufRead,BufNewFile *.py set colorcolumn=80
+"endif
+"au BufRead,BufNewFile *.py set textwidth=79 " break lines when line length increases
 
 " ====== Whitespace ======================================================
 " Highlight trailing whitespace

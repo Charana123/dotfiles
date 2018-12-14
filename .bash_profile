@@ -79,7 +79,8 @@ export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platfor
 
 # Remove default as vim (the worst editor ever)
 export EDITOR=vim
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Go build tool
 export GOPATH="/Users/Charana/Desktop/StackHPC/go"
@@ -107,4 +108,14 @@ alias grep="grep -In --color"
 
 # Use homebrew ctags (not MacOS CommandLineTools ctags)
 alias ctags="`brew --prefix`/bin/ctags"
+
+alias rm="trash"
+
+function repeat()
+{
+    read -p "Enter command to repeat: " comm
+    until $comm; do
+        sleep 5
+    done
+}
 

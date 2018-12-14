@@ -31,7 +31,7 @@ Plugin 'neomake/neomake'
 Plugin 'Yggdroot/indentLine'
 
 " vim-signify (Git Diff)
-Plugin 'mhinz/vim-signify'
+" Plugin 'mhinz/vim-signify'
 
 " ultisnips (Template Snippet Engine)
 Plugin 'SirVer/ultisnips'
@@ -41,6 +41,13 @@ Plugin 'honza/vim-snippets'
 
 " typescript-vim (typescript syntax highlighting)
 Plugin 'leafgarland/typescript-vim'
+
+" vim-surround
+Plugin 'tpope/vim-surround'
+
+" vim-repeat (repeat commands of other plugin including vim-surround)
+Plugin 'tpope/vim-repeat'
+
 
 call vundle#end()            " required
 
