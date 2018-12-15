@@ -78,10 +78,22 @@ inoremap <S-Tab> <C-d>
 " toggle previous active tab
 " au TabLeave * let g:lasttab = tabpagenr()
 " nnoremap <silent> '' :exe "tabn ".g:lasttab<cr>
-"
 
+" Close tabs to the right
+function! TabCloseRight(bang)
+    let cur=tabpagenr()
+    while cur < tabpagenr('$')
+        exe 'tabclose' . a:bang . ' ' . (cur + 1)
+    endwhile
+endfunction
 
+command! -bang TabCloseRight call TabCloseRight('<bang>')
 
-
-
+" Quick save/quit mappings
+inoremap <C-s> <esc>:w<cr>                 " save files
+nnoremap <C-s> :w<cr>
+inoremap <C-d> <esc>:wq<cr>               " save and exit
+nnoremap <C-d> :wq<cr>
+inoremap <C-q> <esc>:qa!<cr>               " quit discarding changes
+nnoremap <C-q> :qa!<cr>
 

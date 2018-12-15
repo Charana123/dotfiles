@@ -9,7 +9,8 @@ export ZSH="/Users/Charana/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if test "$(uname)" = "Darwin" ; then
-  ZSH_THEME="spaceship"
+  # ZSH_THEME="spaceship"
+  ZSH_THEME="amuse"
 else
   ZSH_THEME="amuse"
 fi
@@ -68,7 +69,6 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  vi-mode
   bgnotify
   zsh-autosuggestions
 )
@@ -115,7 +115,8 @@ export LANG=en_US.UTF-8
 
 # Remove default as vim (the worst editor ever)
 export EDITOR=vim
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Use homebrew ctags (not MacOS CommandLineTools ctags)
 alias ctags="`brew --prefix`/bin/ctags"

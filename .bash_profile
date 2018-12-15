@@ -119,3 +119,5 @@ function repeat()
     done
 }
 
+bind -r '\C-s'
+stty -ixon
