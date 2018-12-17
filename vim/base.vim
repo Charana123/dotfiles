@@ -7,7 +7,7 @@ set backspace=indent,eol,start
 " mapping delay and key code delay
 set timeoutlen=1000 ttimeoutlen=0
 
-
+au FocusGained,BufEnter * :checktime " autoload when file changes outside of vim
 " ====== Indentation Options ==========================================
 set tabstop=4     " A tab counts for 2 columns
 set softtabstop=4 " Tab in insert mode adds 2 columns
@@ -90,7 +90,7 @@ set path+=**
 set wildmenu
 set wildmode=longest:full,full
 
-" ======= Window Options =================================================
+" ======= indow Options =================================================
 " Vertical splitting places new window to the right
 set splitright
 
@@ -100,9 +100,7 @@ au BufWritePost *.rst call system('rst2html.py ' . shellescape(@%) . ' ' . shell
 " Tag jumping
 command! MakeTags !ctags -R .
 
-
-
-
+command! DeleteSwaps !rm ~/.local/share/nvim/swap/*
 
 
 

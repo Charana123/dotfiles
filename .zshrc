@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/Charana/.oh-my-zsh"
@@ -121,3 +121,9 @@ alias vim="nvim"
 # Use homebrew ctags (not MacOS CommandLineTools ctags)
 alias ctags="`brew --prefix`/bin/ctags"
 alias grep="grep -I --color"
+
+# '/Users/charana/Library/Python/2.7/lib/python/site-packages'
+export PATH=/Users/charana/Library/Python/2.7/bin:$PATH
+
+# Disable auto-correction for commands and arguments
+setopt nocorrectall
