@@ -97,3 +97,15 @@ nnoremap <C-d> :wq<cr>
 inoremap <C-q> <esc>:qa!<cr>               " quit discarding changes
 nnoremap <C-q> :qa!<cr>
 
+" Commentary - Quick comment with CTRL-C
+nmap <C-c> gcc
+vmap <C-c> gc
+
+
+
+
+
+
+
+
+

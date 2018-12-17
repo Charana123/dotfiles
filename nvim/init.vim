@@ -48,6 +48,8 @@ Plugin 'tpope/vim-surround'
 " vim-repeat (repeat commands of other plugin including vim-surround)
 Plugin 'tpope/vim-repeat'
 
+" commentary
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()            " required
 
