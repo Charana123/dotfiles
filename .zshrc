@@ -127,3 +127,4 @@ export PATH=/Users/charana/Library/Python/2.7/bin:$PATH
 
 # Disable auto-correction for commands and arguments
 setopt nocorrectall
+

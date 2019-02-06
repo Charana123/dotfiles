@@ -101,7 +101,9 @@ nnoremap <C-q> :qa!<cr>
 nmap <C-c> gcc
 vmap <C-c> gc
 
-
+" Tab navigation
+nnoremap { :tabprevious<CR>
+nnoremap } :tabnext<CR>
 
 
 
