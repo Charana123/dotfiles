@@ -42,6 +42,12 @@ Plugin 'honza/vim-snippets'
 " typescript-vim (typescript syntax highlighting)
 Plugin 'leafgarland/typescript-vim'
 
+" vim-cpp-enhanced-highlight (c++ syntax highlighting)
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" clang_complete (c++ autocompletion)
+" Plugin 'rip-rip/clang_complete'
+
 " vim-surround
 Plugin 'tpope/vim-surround'
 
@@ -50,6 +56,12 @@ Plugin 'tpope/vim-repeat'
 
 " commentary
 Plugin 'tpope/vim-commentary'
+
+" NerdTree
+" Plugin 'scrooloose/nerdtree'
+
+" ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()            " required
 

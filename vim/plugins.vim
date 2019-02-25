@@ -36,3 +36,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" =========== ctrlp =========================================
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
