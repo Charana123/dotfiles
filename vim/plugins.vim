@@ -14,6 +14,7 @@ let g:deoplete#enable_at_startup = 1
 call neomake#configure#automake('nw', 1000)
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_c_enabled_makers = ['clang']
+let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_typescript_enabled_makers = ['tsc']
 let g:neomake_rst_enabled_makers = ['rstlint']
 let g:neomake_html_enabled_makers = ['tidy']

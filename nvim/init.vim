@@ -24,6 +24,9 @@ Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " deoplete-jedi (python autocompletion)
 " Plugin 'zchee/deoplete-jedi'
 
+" denite
+" Plugin 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " neomake (Async syntax checker and linter)
 Plugin 'neomake/neomake'
 
