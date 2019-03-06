@@ -24,6 +24,12 @@ Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " deoplete-jedi (python autocompletion)
 " Plugin 'zchee/deoplete-jedi'
 
+" Plugin 'tpope/vim-classpath'
+" Plugin 'vim-scripts/taglist.vim'
+
+" JavaImp (manual imports and doc viewer)
+Plugin 'Charana123/JavaImp.vim'
+
 " denite
 " Plugin 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 

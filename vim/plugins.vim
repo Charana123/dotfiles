@@ -39,3 +39,18 @@ let g:UltiSnipsEditSplit="vertical"
 
 " =========== ctrlp =========================================
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" =========== JavaImp =======================================
+let jre = system("/usr/libexec/java_home")
+let g:JavaImpPaths =
+    \ "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/" . "jre/lib"
+    \ "," . $HOME . "/.m2/repository"
+let g:JavaImpDataDir = $HOME . "/vim/JavaImp"
+" command! JCDict execute "!cat " . g:JavaImpDataDir . "/JavaImp.txt | sed 's/ .*//' > " . g:JavaImpDataDir . "/JCDict.txt"
+" exe "set dict=" . g:JavaImpDataDir . "/JCDict.txt"
+let g:JavaImpDocPaths =
+    \ $HOME . "/.m2/repository"
+    \ . ",/Users/charana/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4-javadoc"
+    \ . ",/Users/charana/Downloads/docs/api"
+let g:JavaImpDocViewer = "w3m"
+
