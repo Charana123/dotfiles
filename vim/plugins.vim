@@ -49,8 +49,8 @@ let g:JavaImpDataDir = $HOME . "/vim/JavaImp"
 " command! JCDict execute "!cat " . g:JavaImpDataDir . "/JavaImp.txt | sed 's/ .*//' > " . g:JavaImpDataDir . "/JCDict.txt"
 " exe "set dict=" . g:JavaImpDataDir . "/JCDict.txt"
 let g:JavaImpDocPaths =
-    \ $HOME . "/.m2/repository"
-    \ . ",/Users/charana/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4-javadoc"
-    \ . ",/Users/charana/Downloads/docs/api"
+    \ $HOME . "/.m2/docs"
+    \ "," . $HOME . "/Downloads/docs/api"
+" command! ExtractDocs "!find ~/.m2/repository | grep -i '\-javadoc.jar$' | xargs -I {} unzip -n -d ~/.m2/docs '{}'"
 let g:JavaImpDocViewer = "w3m"
 
