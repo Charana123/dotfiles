@@ -1,0 +1,18 @@
+# powerlevel10k
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# neovim
+alias vi="nvim"
+alias vim="nvim"
+
+# bat
+export BAT_PAGER=""
+export BAT_THEME="ansi-light"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fasd
+eval "$(fasd --init auto)"
+alias v="sf -e nvim"

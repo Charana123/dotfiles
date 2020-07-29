@@ -10,10 +10,14 @@ export ZSH="/Users/Charana/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if test "$(uname)" = "Darwin" ; then
   # ZSH_THEME="spaceship"
-  ZSH_THEME="amuse"
+  # ZSH_THEME="amuse"
 else
   ZSH_THEME="amuse"
 fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# eval "$(starship init zsh)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -113,21 +117,50 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Remove default as vim (the worst editor ever)
-export EDITOR=vim
+
+
+# Custom
+# =======================================================================================================
+
+# env
+# =============
+export EDITOR=nvim
+export GOPATH=~/Documents/go
+export PATH="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH"
+export PKG_CONFIG_PATH=/usr/local/Cellar/opencv/4.1.1/lib/pkgconfig/
+# icu4c
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+# X11 Forwarding
+export DISPLAY=:0
+# Dont auto-update packages when installing
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Aliases
+# ==============
 alias vi="nvim"
 alias vim="nvim"
-
 # Use homebrew ctags (not MacOS CommandLineTools ctags)
 alias ctags="`brew --prefix`/bin/ctags"
-alias grep="grep -I --color"
-
-# '/Users/charana/Library/Python/2.7/lib/python/site-packages'
-export PATH=/Users/charana/Library/Python/2.7/bin:$PATH
+alias grep="rg -i"
+export BAT_PAGER=""
+export BAT_THEME="ansi-light"
 
 # Disable auto-correction for commands and arguments
 setopt nocorrectall
 
-# For neomake makers
-alias g++="g++-8"
-alias gcc="gcc-8"
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fasd
+eval "$(fasd --init auto)"
+alias v="sf -e nvim"
+
