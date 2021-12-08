@@ -22,8 +22,7 @@ if [ -x "$(command -v apt)" ]; then
     sudo apt install -y neovim
     sudo apt-get install python3
     sudo apt-get install python3-neovim
-fi
-if [ -x "$(command -v yum)" ]; then
+elif [ -x "$(command -v yum)" ]; then
     yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     yum install -y python3
     yum install -y neovim python3-neovim
